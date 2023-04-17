@@ -8,13 +8,6 @@ namespace HCLApplicatie2.Models
 {
     public class Account
     {
-        //public int ID;
-        //public string naam;
-        //public string email;
-        //public string wachtwoord;
-        //public string team;
-        //public string rol;
-
         public int ID { get; set; }
         public string Naam { get; set; }
         public string Email { get; set; }

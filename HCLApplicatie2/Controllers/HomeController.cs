@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
-using BusinessLayer;
+//using BusinessLayer;
 using BusinessLayer.Collections;
 using HCLApplicatie2.Models;
 using Microsoft.AspNetCore.Mvc;
+using HCLApplicatie2.ViewModels;
 
 
 namespace HCLApplicatie2.Controllers
@@ -28,8 +29,8 @@ namespace HCLApplicatie2.Controllers
 
         public IActionResult Wedstrijden()
         {
-            
             ViewData["wedstrijden"] = WedstrijdCollection.GetWedstrijden();
+            
 
             return View();
         }
