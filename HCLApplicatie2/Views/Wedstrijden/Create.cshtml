@@ -2,22 +2,41 @@
 
 @{
     ViewData["Title"] = "Create";
-
 }
+<p>@ViewData["test"]</p>
 
 <h1>Create</h1>
 
 <h4>Wedstrijd</h4>
 <hr>
+
+<section>
+    <div class="form-box">
+        <div class="form-value">
+
+            <form action="@Url.Action("Create", "Wedstrijden")" method="post">
+                <div class="form-group">
+                    <input type="text" name="ThuisTeam" placeholder="Thuis team" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="ThuisScore" placeholder="Thuis score" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="UitTeam" placeholder="Uit team" required>
+                </div>
+
+                <p></p>
+                <input type="submit" value="Create" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Wedstrijden")'" />
+            </form>
+        </div>
+    </div>
+</section>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ID" class="control-label"></label>
-                <input asp-for="ID" class="form-control" />
-                <span asp-validation-for="ID" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="ThuisTeam" class="control-label"></label>
                 <input asp-for="ThuisTeam" class="form-control" />

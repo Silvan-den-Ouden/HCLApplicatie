@@ -39,5 +39,10 @@ namespace DataAccessLayer.DALs
 
             return wedstrijden;
         }
+
+        public static string test()
+        {
+            return "CUM";
+        }
     }
 }

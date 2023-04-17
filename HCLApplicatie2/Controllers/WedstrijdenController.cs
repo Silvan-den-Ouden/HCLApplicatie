@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BusinessLayer.Collections;
+using BusinessLayer.Models;
 
 namespace HCLApplicatie2.Controllers
 {
@@ -18,24 +20,26 @@ namespace HCLApplicatie2.Controllers
         }
 
         // GET: WedstrijdenController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
 
         // POST: WedstrijdenController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public IActionResult Create(string ThuisTeam)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                ViewData["test"] = ThuisTeam;
+                //return RedirectToAction(nameof(Create));
             }
             catch
             {
                 return View();
             }
+            return View();
         }
 
         // GET: WedstrijdenController/Edit/5
@@ -66,8 +70,6 @@ namespace HCLApplicatie2.Controllers
         }
 
         // POST: WedstrijdenController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try

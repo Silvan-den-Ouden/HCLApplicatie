@@ -1,4 +1,5 @@
 ﻿using System;
+using DataAccessLayer.DALs;
 
 namespace BusinessLayer.Models
 {
@@ -13,6 +14,9 @@ namespace BusinessLayer.Models
 
         public Wedstrijd() { }
 
-
+        public static string test()
+        {
+            return WedstrijdDAL.test();
+        }
     }
 }
