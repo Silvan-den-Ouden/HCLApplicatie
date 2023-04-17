@@ -1,0 +1,59 @@
+﻿using System.Diagnostics;
+using BusinessLayer;
+using BusinessLayer.Collections;
+using HCLApplicatie2.Models;
+using Microsoft.AspNetCore.Mvc;
+
+
+namespace HCLApplicatie2.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Schema()
+        {
+            return View();
+        }
+
+        public IActionResult Wedstrijden()
+        {
+            
+            ViewData["wedstrijden"] = WedstrijdCollection.GetWedstrijden();
+
+            return View();
+        }
+        public IActionResult Verslagen()
+        {
+            return View();
+        }
+        public IActionResult Galerij()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            ViewData["loggedInUser"] = AccountCollection.loggedInUser();
+            ViewData["accounts"] = AccountCollection.GetUsers();
+
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+}

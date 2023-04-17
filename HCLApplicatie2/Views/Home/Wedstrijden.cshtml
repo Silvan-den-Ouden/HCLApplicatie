@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Wedstrijden";
+    List<Wedstrijd> wedstrijden = (List<Wedstrijd>)ViewData["wedstrijden"];
+}
+
+<h1>Uitslagen</h1>
+
+@foreach(var wed in wedstrijden)
+{
+    <h7>@wed.Datum.ToShortDateString()</h7>
+    if(wed.ThuisTeam.Contains("Liempde")){
+        <p><b>@wed.ThuisTeam </b> &nbsp; @wed.ThuisScore - @wed.UitScore &nbsp; @wed.UitTeam</p>
+    } else if (wed.UitTeam.Contains("Liempde"))
+    {
+        <p>@wed.ThuisTeam &nbsp; @wed.ThuisScore - @wed.UitScore &nbsp; <b>@wed.UitTeam</b></p>
+    } else
+    {
+        <p>@wed.ThuisTeam &nbsp; @wed.ThuisScore - @wed.UitScore &nbsp; @wed.UitTeam</p>
+    }
+}
+
