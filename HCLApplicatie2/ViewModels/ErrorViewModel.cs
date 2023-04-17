@@ -1,4 +1,4 @@
-namespace HCLApplicatie2.Models
+namespace HCLApplicatie2.ViewModels
 {
     public class ErrorViewModel
     {

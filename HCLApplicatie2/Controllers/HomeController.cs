@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 //using BusinessLayer;
 using BusinessLayer.Collections;
-using HCLApplicatie2.Models;
 using Microsoft.AspNetCore.Mvc;
 using HCLApplicatie2.ViewModels;
 
