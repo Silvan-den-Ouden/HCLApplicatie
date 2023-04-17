@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.DALs;
-using HCLApplicatie2.Models;
+using BusinessLayer.Models;
 
 namespace BusinessLayer.Collections
 {

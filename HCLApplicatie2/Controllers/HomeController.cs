@@ -45,9 +45,6 @@ namespace HCLApplicatie2.Controllers
 
         public IActionResult Privacy()
         {
-            ViewData["loggedInUser"] = AccountCollection.loggedInUser();
-            ViewData["accounts"] = AccountCollection.GetUsers();
-
             return View();
         }
 

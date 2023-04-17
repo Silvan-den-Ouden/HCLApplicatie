@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HCLApplicatie2.Models
+namespace BusinessLayer.Models
 {
     public class Wedstrijd
     {
