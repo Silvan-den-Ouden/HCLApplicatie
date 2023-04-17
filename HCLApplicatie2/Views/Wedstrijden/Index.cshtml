@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Wedstrijden";
+
+    //List<Wedstrijd> wedstrijden = (List<Wedstrijd>)ViewData["wedstrijden"];
+
+    List<HCLApplicatie2.ViewModels.WedstrijdVM> WedstrijdenVM = new List<HCLApplicatie2.ViewModels.WedstrijdVM>();
+
+    foreach (var wedstrijd in BusinessLayer.Collections.WedstrijdCollection.GetWedstrijden())
+    {
+        HCLApplicatie2.ViewModels.WedstrijdVM w = new HCLApplicatie2.ViewModels.WedstrijdVM()
+                {
+                    ID = wedstrijd.ID,
+                    ThuisTeam = wedstrijd.ThuisTeam,
+                    ThuisScore = wedstrijd.ThuisScore,
+                    UitScore = wedstrijd.UitScore,
+                    UitTeam = wedstrijd.UitTeam,
+                    Datum = wedstrijd.Datum,
+                };
+        WedstrijdenVM.Add(w);
+    }
+}
+
+<h1>Uitslagen</h1>
+
+@foreach (var wed in WedstrijdenVM)
+{
+    <h7>@wed.Datum.ToShortDateString()</h7>
+    if (wed.ThuisTeam.Contains("Liempde"))
+    {
+        <p><b>@wed.ThuisTeam</b> &nbsp; @wed.ThuisScore - @wed.UitScore &nbsp; @wed.UitTeam</p>
+    }
+    else if (wed.UitTeam.Contains("Liempde"))
+    {
+        <p>@wed.ThuisTeam &nbsp; @wed.ThuisScore - @wed.UitScore &nbsp; <b>@wed.UitTeam</b></p>
+    }
+    else
+    {
+        <p>@wed.ThuisTeam &nbsp; @wed.ThuisScore - @wed.UitScore &nbsp; @wed.UitTeam</p>
+    }
+}
