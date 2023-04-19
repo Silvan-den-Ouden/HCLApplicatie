@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLayer.Collections;
 using BusinessLayer.Models;
+using HCLApplicatie2.ViewModels;
 
 namespace HCLApplicatie2.Controllers
 {
@@ -10,7 +11,23 @@ namespace HCLApplicatie2.Controllers
         // GET: WedstrijdenController
         public ActionResult Index()
         {
-            return View();
+            List<WedstrijdVM> WedstrijdenVM = new();
+
+            foreach (var wedstrijd in WedstrijdCollection.GetWedstrijden())
+            {
+                WedstrijdVM w = new()
+                {
+                    ID = wedstrijd.ID,
+                    ThuisTeam = wedstrijd.ThuisTeam,
+                    ThuisScore = wedstrijd.ThuisScore,
+                    UitScore = wedstrijd.UitScore,
+                    UitTeam = wedstrijd.UitTeam,
+                    Datum = wedstrijd.Datum,
+                };
+                WedstrijdenVM.Add(w);
+            }
+
+            return View(WedstrijdenVM);
         }
 
         // GET: WedstrijdenController/Details/5
