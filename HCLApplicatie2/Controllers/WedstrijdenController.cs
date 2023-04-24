@@ -45,18 +45,31 @@ namespace HCLApplicatie2.Controllers
         // POST: WedstrijdenController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Create(string ThuisTeam)
+        public IActionResult Create(WedstrijdVM wedstrijdVM)
         {
             try
             {
-                ViewData["test"] = ThuisTeam;
+                ViewData["test"] = wedstrijdVM.Datum.Date;
+
+                Wedstrijd wedstrijd = new()
+                {
+                    ID = wedstrijdVM.ID,
+                    ThuisTeam = wedstrijdVM.ThuisTeam,
+                    ThuisScore = wedstrijdVM.ThuisScore,
+                    UitScore = wedstrijdVM.UitScore,
+                    UitTeam = wedstrijdVM.UitTeam,
+                    Datum = wedstrijdVM.Datum,
+                };
+
+                wedstrijd.CreateWedstrijd(wedstrijd);
+
+                return View();
                 //return RedirectToAction(nameof(Create));
             }
             catch
             {
                 return View();
             }
-            return View();
         }
 
         // GET: WedstrijdenController/Edit/5

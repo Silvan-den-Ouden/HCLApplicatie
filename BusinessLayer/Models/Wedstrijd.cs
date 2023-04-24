@@ -1,5 +1,6 @@
 ﻿using System;
 using DataAccessLayer.DALs;
+using DataAccessLayer.DTOs;
 
 namespace BusinessLayer.Models
 {
@@ -14,9 +15,19 @@ namespace BusinessLayer.Models
 
         public Wedstrijd() { }
 
-        public static string test()
+        public void CreateWedstrijd(Wedstrijd wedstrijd)
         {
-            return WedstrijdDAL.test();
+            WedstrijdDTO wedstrijdDTO = new WedstrijdDTO()
+            {
+                ID = wedstrijd.ID,
+                ThuisTeam = wedstrijd.ThuisTeam,
+                ThuisScore = wedstrijd.ThuisScore,
+                UitScore = wedstrijd.UitScore,
+                UitTeam = wedstrijd.UitTeam,
+                Datum = wedstrijd.Datum,
+            };
+
+            WedstrijdDAL.CreateWedstrijd(wedstrijdDTO);
         }
     }
 }

@@ -39,10 +39,17 @@ namespace DataAccessLayer.DALs
 
             return wedstrijden;
         }
-
-        public static string test()
+            
+        public static void CreateWedstrijd(WedstrijdDTO wedstrijdDTO)
         {
-            return "CUM";
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand sqlCom = new MySqlCommand($"Insert into `wedstrijd` (`thuisTeam`,`thuisScore`, `uitScore`, `uitTeam`,`datum`) VALUES (\"{wedstrijdDTO.ThuisTeam}\", {wedstrijdDTO.ThuisScore}, {wedstrijdDTO.UitScore}, \"{wedstrijdDTO.UitTeam}\", '{wedstrijdDTO.Datum.Year}-{wedstrijdDTO.Datum.Month}-{wedstrijdDTO.Datum.Day}')", con);
+                MySqlDataReader reader = sqlCom.ExecuteReader();
+                con.Close();
+            }
         }
+
     }
 }
