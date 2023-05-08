@@ -1,9 +1,8 @@
-﻿@model HCLApplicatie2.ViewModels.WedstrijdVM
+﻿@model BusinessLayer.Models.Wedstrijd
 
 @{
     ViewData["Title"] = "Create";
 }
-<p>@ViewData["test"]</p>
 
 <h1>Create</h1>
 
@@ -32,51 +31,10 @@
                 </div>
 
                 <p></p>
-                <input type="submit" value="Create" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Wedstrijden")'" />
+                <input type="button" value="Terug" class="btn btn-danger" onclick="location.href='@Url.Action("")'" />
+                <input type="submit" value="Create" class="btn btn-primary"/>
+                
             </form>
         </div>
     </div>
 </section>
-@*
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
-            <div class="form-group">
-                <label asp-for="ThuisTeam" class="control-label"></label>
-                <input asp-for="ThuisTeam" class="form-control" />
-                <span asp-validation-for="ThuisTeam" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThuisScore" class="control-label"></label>
-                <input asp-for="ThuisScore" class="form-control" />
-                <span asp-validation-for="ThuisScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UitScore" class="control-label"></label>
-                <input asp-for="UitScore" class="form-control" />
-                <span asp-validation-for="UitScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UitTeam" class="control-label"></label>
-                <input asp-for="UitTeam" class="form-control" />
-                <span asp-validation-for="UitTeam" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Datum" class="control-label"></label>
-                <input asp-for="Datum" class="form-control" />
-                <span asp-validation-for="Datum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-*@

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Schema's</h1>
+
+<hr>
+
+@foreach (var programma in @Model)
+{
+    string tijd = programma.DatumTijd.ToLongTimeString().Remove(5); 
+    if(tijd == "00:00")
+    {
+        tijd = "n.n.b.";
+    }
+
+    <h7>@programma.DatumTijd.ToShortDateString()</h7>
+    if (programma.ThuisTeam.Contains("Liempde"))
+    {
+        <p><b>@programma.ThuisTeam</b> &nbsp; @tijd &nbsp; @programma.UitTeam</p>
+    }
+    else if (programma.UitTeam.Contains("Liempde"))
+    {
+        <p>@programma.ThuisTeam &nbsp; @tijd &nbsp; <b>@programma.UitTeam</b></p>
+    }
+    else
+    {
+        <p>@programma.ThuisTeam &nbsp; @tijd &nbsp; @programma.UitTeam</p>
+    }
+    <input type="button" value="Edit" class="btn" onclick="update(@programma.ID)" />
+    <br>
+    <br>
+}
+
+@section scripts{
+       @* location.href='@Url.Action("Update")'*@
+    <script>
+        function update(id){
+            $.ajax({
+                url: '/Schema/FetchData',
+                data: { ID: id },
+                type: 'GET',
+                success: function (returned_data) {
+                    location.href = "Schema/Update?ID=" + returned_data
+                },
+                error: function (returned_data) {s
+                    console.log(returned_data)
+                }
+            });
+        }
+    </script>
+}

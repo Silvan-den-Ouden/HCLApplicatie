@@ -2,7 +2,13 @@
     ViewData["Title"] = "Wedstrijden";    
 }
 
-<h1>Uitslagen</h1>
+<h1>Uitslagen</h1> 
+
+<hr>
+
+<input type="button" value="+" class="btn" onclick="location.href='@Url.Action("Create")'" />
+<br>
+
 
 @foreach (var wed in @Model)
 {

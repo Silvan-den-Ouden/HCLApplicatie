@@ -11,23 +11,9 @@ namespace HCLApplicatie2.Controllers
         // GET: WedstrijdenController
         public ActionResult Index()
         {
-            List<WedstrijdVM> WedstrijdenVM = new();
+            List<Wedstrijd> WedstrijdList = WedstrijdCollection.GetWedstrijden();
 
-            foreach (var wedstrijd in WedstrijdCollection.GetWedstrijden())
-            {
-                WedstrijdVM w = new()
-                {
-                    ID = wedstrijd.ID,
-                    ThuisTeam = wedstrijd.ThuisTeam,
-                    ThuisScore = wedstrijd.ThuisScore,
-                    UitScore = wedstrijd.UitScore,
-                    UitTeam = wedstrijd.UitTeam,
-                    Datum = wedstrijd.Datum,
-                };
-                WedstrijdenVM.Add(w);
-            }
-
-            return View(WedstrijdenVM);
+            return View(WedstrijdList);
         }
 
         // GET: WedstrijdenController/Details/5
@@ -45,26 +31,13 @@ namespace HCLApplicatie2.Controllers
         // POST: WedstrijdenController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Create(WedstrijdVM wedstrijdVM)
+        public IActionResult Create(Wedstrijd wedstrijd)
         {
             try
             {
-                ViewData["test"] = wedstrijdVM.Datum.Date;
-
-                Wedstrijd wedstrijd = new()
-                {
-                    ID = wedstrijdVM.ID,
-                    ThuisTeam = wedstrijdVM.ThuisTeam,
-                    ThuisScore = wedstrijdVM.ThuisScore,
-                    UitScore = wedstrijdVM.UitScore,
-                    UitTeam = wedstrijdVM.UitTeam,
-                    Datum = wedstrijdVM.Datum,
-                };
-
                 wedstrijd.CreateWedstrijd(wedstrijd);
 
                 return View();
-                //return RedirectToAction(nameof(Create));
             }
             catch
             {

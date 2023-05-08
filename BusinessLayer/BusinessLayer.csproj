@@ -77,8 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\AccountCollection.cs" />
+    <Compile Include="Collections\ProgrammaCollection.cs" />
     <Compile Include="Collections\WedstrijdCollection.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\ProgrammaModel.cs" />
     <Compile Include="Models\Wedstrijd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

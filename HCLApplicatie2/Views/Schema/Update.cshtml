@@ -1,0 +1,41 @@
+﻿@model BusinessLayer.Models.ProgrammaModel
+
+@{
+    ViewData["Title"] = "Update";
+    string tijd = Model.DatumTijd.ToLongTimeString().Remove(5);
+    string datum = Model.DatumTijd.Year + "-" + Model.DatumTijd.Month.ToString("D2") + "-" + Model.DatumTijd.Day.ToString("D2");
+    string datumTijd = datum + "T" + tijd;
+}
+
+<h1>Update</h1>
+
+<h4>Programma</h4>
+<hr />
+
+<section>
+    <div class="form-box">
+        <div class="form-value">
+
+            <form action="@Url.Action("Update", "Schema")" method="post">
+                <div class="form-group">
+                    <input type="hidden" name="ID" placeholder="ID" value="@Model.ID" readonly  required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="ThuisTeam" placeholder="Thuis team" value="@Model.ThuisTeam" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="UitTeam" placeholder="Uit team" value="@Model.UitTeam" required>
+                </div>
+                <div class="form-group">
+                    <input type="datetime-local" name="DatumTijd" value="@datumTijd" required>
+                </div>
+
+                <p></p>
+                <input type="button" value="Terug" class="btn btn-danger" onclick="location.href='@Url.Action("")'" />
+                <input type="submit" value="Update" class="btn btn-primary" />
+
+            </form>
+        </div>
+    </div>
+</section>
+
