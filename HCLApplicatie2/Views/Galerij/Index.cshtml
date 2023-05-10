@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@foreach(var foto in @Model)
+{
+    <img src="@foto.URL" alt="image" >
+}

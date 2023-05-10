@@ -17,7 +17,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * from `programma` order by `datum` DESC ", con);
+                MySqlCommand sqlCom = new MySqlCommand("Select * from `programma` order by `DatumTijd` ASC ", con);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
                 while (reader.Read())
@@ -68,8 +68,17 @@ namespace DataAccessLayer.DALs
                 MySqlCommand cmd = new MySqlCommand($"Update `programma` set `thuisTeam` = \"{ThuisTeam}\", `uitTeam` = \"{UitTeam}\", `DatumTijd` = '{DatumString}' where `ID` = {ID}", con);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 con.Close();
-                //Update `programma` set `thuisTeam` = "test", `uitTeam` = "test", `DatumTijd` = '2020-2-2' where `ID` = 3
-                //"Update `programma` set `thuisTeam` = \"{ThuisTeam}\", `uitTeam` = \"{UitTeam}\", `DatumTijd` = '{Datum.Year}-{Datum.Month}-{Datum.Day}' where `ID` = {ID}"
+            }
+        }
+
+        public static void DeleteProgramma(int ID)
+        {
+            using(MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand($"Delete from `programma` where `id` = {ID}", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                con.Close();
             }
         }
     }

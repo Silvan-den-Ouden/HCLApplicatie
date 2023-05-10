@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Collections;
 using BusinessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace HCLApplicatie2.Controllers
 {
@@ -12,11 +13,6 @@ namespace HCLApplicatie2.Controllers
             
             return View(ProgrammaModels);
         }
-
-        //public IActionResult Update()
-        //{
-        //    return View();
-        //}
 
         public IActionResult Update(int ID)
         {
@@ -39,9 +35,29 @@ namespace HCLApplicatie2.Controllers
             }
         }
 
+        public IActionResult Delete(int ID)
+        {
+            ProgrammaModel programmaModel = ProgrammaCollection.GetProgrammaWithID(ID);
+            return View(programmaModel);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(ProgrammaModel programma)
+        {
+            try
+            {
+                ProgrammaCollection.DeleteProgramma(programma.ID);
+
+                return View(programma);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         public int FetchData(int ID)
         {
-            
             return ID; 
         }
     }

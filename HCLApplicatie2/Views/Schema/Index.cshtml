@@ -28,13 +28,13 @@
     {
         <p>@programma.ThuisTeam &nbsp; @tijd &nbsp; @programma.UitTeam</p>
     }
-    <input type="button" value="Edit" class="btn" onclick="update(@programma.ID)" />
+    <input type="button" value="Delete" class="btn btn-outline-danger" onclick="deleteItem(@programma.ID)" />
+    <input type="button" value="Edit" class="btn btn-primary" onclick="update(@programma.ID)" />
     <br>
     <br>
 }
 
 @section scripts{
-       @* location.href='@Url.Action("Update")'*@
     <script>
         function update(id){
             $.ajax({
@@ -44,10 +44,25 @@
                 success: function (returned_data) {
                     location.href = "Schema/Update?ID=" + returned_data
                 },
-                error: function (returned_data) {s
+                error: function (returned_data) {
                     console.log(returned_data)
                 }
             });
         }
+
+        function deleteItem(id){
+            $.ajax({
+                url: '/Schema/FetchData',
+                data: { ID: id },
+                type: 'GET',
+                success: function (returned_data) {
+                    location.href = "Schema/Delete?ID=" + returned_data
+                },
+                error: function (returned_data) {
+                    console.log(returned_data)
+                }
+            });
+        }
+       
     </script>
 }

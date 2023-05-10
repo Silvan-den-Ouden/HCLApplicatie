@@ -77,10 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DALs\AccountDAL.cs" />
+    <Compile Include="DALs\FotoDAL.cs" />
     <Compile Include="DALs\ProgrammaDAL.cs" />
     <Compile Include="DALs\WedstrijdDAL.cs" />
     <Compile Include="DTOs\AccountDTO.cs" />
     <Compile Include="ConnectorClass.cs" />
+    <Compile Include="DTOs\FotoDTO.cs" />
     <Compile Include="DTOs\ProgrammaDTO.cs" />
     <Compile Include="DTOs\WedstrijdDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

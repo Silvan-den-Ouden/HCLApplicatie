@@ -51,5 +51,10 @@ namespace BusinessLayer.Collections
 
             ProgrammaDAL.UpdateProgramma(ID, ThuisTeam, UitTeam, DatumString);
         }
+
+        public static void DeleteProgramma(int ID)
+        {
+            ProgrammaDAL.DeleteProgramma(ID);
+        }
     }
 }

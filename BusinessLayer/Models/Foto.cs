@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.DTOs
+namespace BusinessLayer.Models
 {
-    public class FotoDTO
+    public class Foto
     {
         public int ID { get; set; }
         public string URL { get; set; }
 
-        public FotoDTO() { }
+        public Foto() { }
     }
 }
