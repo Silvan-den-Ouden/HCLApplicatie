@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessLayer.DTOs;
+using DataTransferObjects;
 using MySql.Data.MySqlClient;
 
 namespace DataAccessLayer.DALs
@@ -65,7 +65,12 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand($"Update `programma` set `thuisTeam` = \"{ThuisTeam}\", `uitTeam` = \"{UitTeam}\", `DatumTijd` = '{DatumString}' where `ID` = {ID}", con);
+                MySqlCommand cmd = new MySqlCommand("Update `programma` set `thuisTeam` = @ThuisTeam, `uitTeam` = @UitTeam, `DatumTijd` = @DatumTijd where `ID` = @ID", con);
+                cmd.Parameters.AddWithValue("@ThuisTeam", ThuisTeam);
+                cmd.Parameters.AddWithValue("@UitTeam", UitTeam);
+                cmd.Parameters.AddWithValue("@DatumTijd", DatumString);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
                 MySqlDataReader reader = cmd.ExecuteReader();
                 con.Close();
             }
