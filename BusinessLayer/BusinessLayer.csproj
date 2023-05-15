@@ -95,6 +95,14 @@
       <Project>{033be555-ef1d-4484-9c70-a61e4368ec2e}</Project>
       <Name>DataTransferObjects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Factory\Factory.csproj">
+      <Project>{cb183062-0deb-46df-812e-c9460be74537}</Project>
+      <Name>Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{d20c86a5-1f4b-44ec-b00c-51a4dd366d26}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
