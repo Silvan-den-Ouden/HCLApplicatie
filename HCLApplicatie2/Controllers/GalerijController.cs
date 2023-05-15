@@ -6,9 +6,11 @@ namespace HCLApplicatie2.Controllers
 {
     public class GalerijController : Controller
     {
+        private readonly FotoCollection _fotoCollection = new();
+
         public IActionResult Index()
         {
-            List<Foto> fotos = FotoCollection.GetFotos();
+            List<Foto> fotos = _fotoCollection.GetFotos();
            
             return View(fotos);
         }

@@ -11,7 +11,7 @@ namespace DataAccessLayer.DALs
 {
     public class AccountDAL
     {
-        public static List<AccountDTO> GetUserInfo()
+        public List<AccountDTO> GetUserInfo()
         {
             List<AccountDTO> users = new List<AccountDTO>();
 
@@ -39,7 +39,7 @@ namespace DataAccessLayer.DALs
             return users;
         }
 
-        public static int LoggedInUser()
+        public int LoggedInUser()
         {
             int UID = 2;
             return UID;

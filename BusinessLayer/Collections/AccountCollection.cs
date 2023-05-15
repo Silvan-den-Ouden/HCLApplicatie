@@ -10,11 +10,13 @@ namespace BusinessLayer.Collections
 {
     public class AccountCollection
     {
-        public static List<Account> GetUsers()
+        private readonly AccountDAL _accountDAL = new AccountDAL();
+
+        public List<Account> GetUsers()
         {
             List<Account> accounts = new List<Account>();
 
-            foreach (var user in AccountDAL.GetUserInfo())
+            foreach (var user in _accountDAL.GetUserInfo())
             {
                 Account u = new Account()
                 {
@@ -30,7 +32,7 @@ namespace BusinessLayer.Collections
             return accounts;
         }
 
-        public static Account loggedInUser()
+        public Account loggedInUser()
         {
             Account loggedInUser = new Account();
 
@@ -46,9 +48,9 @@ namespace BusinessLayer.Collections
         }
 
         //hard-coded "logged in" user
-        public static int GetUID()
+        public int GetUID()
         {
-            int account = AccountDAL.LoggedInUser();
+            int account = _accountDAL.LoggedInUser();
             return account;
         }
 

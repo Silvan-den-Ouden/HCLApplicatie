@@ -10,7 +10,7 @@ namespace DataAccessLayer.DALs
 {
     public class FotoDAL
     {
-        public static List<FotoDTO> GetFotoDTOs()
+        public List<FotoDTO> GetFotoDTOs()
         {
             List<FotoDTO> fotos = new List<FotoDTO>();
 

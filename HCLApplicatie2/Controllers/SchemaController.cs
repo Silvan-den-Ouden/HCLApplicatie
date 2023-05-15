@@ -7,16 +7,18 @@ namespace HCLApplicatie2.Controllers
 {
     public class SchemaController : Controller
     {
+        private readonly ProgrammaCollection _programmaCollection = new();
+
         public IActionResult Index()
         {
-            List<ProgrammaModel> ProgrammaModels = ProgrammaCollection.GetProgramma();
+            List<ProgrammaModel> ProgrammaModels = _programmaCollection.GetProgramma();
             
             return View(ProgrammaModels);
         }
 
         public IActionResult Update(int ID)
         {
-            ProgrammaModel programmaModel = ProgrammaCollection.GetProgrammaWithID(ID);
+            ProgrammaModel programmaModel = _programmaCollection.GetProgrammaWithID(ID);
             return View(programmaModel);
         }
 
@@ -25,7 +27,7 @@ namespace HCLApplicatie2.Controllers
         {
             try
             {   
-                ProgrammaCollection.UpdateProgramma(programma.ID, programma.ThuisTeam, programma.UitTeam, programma.DatumTijd);
+                _programmaCollection.UpdateProgramma(programma.ID, programma.ThuisTeam, programma.UitTeam, programma.DatumTijd);
 
                 return View(programma);
             }
@@ -37,7 +39,7 @@ namespace HCLApplicatie2.Controllers
 
         public IActionResult Delete(int ID)
         {
-            ProgrammaModel programmaModel = ProgrammaCollection.GetProgrammaWithID(ID);
+            ProgrammaModel programmaModel = _programmaCollection.GetProgrammaWithID(ID);
             return View(programmaModel);
         }
 
@@ -46,7 +48,7 @@ namespace HCLApplicatie2.Controllers
         {
             try
             {
-                ProgrammaCollection.DeleteProgramma(programma.ID);
+                _programmaCollection.DeleteProgramma(programma.ID);
 
                 return View(programma);
             }

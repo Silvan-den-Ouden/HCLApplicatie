@@ -10,7 +10,7 @@ namespace DataAccessLayer.DALs
 {
     public class ProgrammaDAL
     {
-        public static List<ProgrammaDTO> GetProgrammaDTOs()
+        public List<ProgrammaDTO> GetProgrammaDTOs()
         {
             List<ProgrammaDTO> programmaDTOs = new List<ProgrammaDTO>();
 
@@ -37,7 +37,7 @@ namespace DataAccessLayer.DALs
             return programmaDTOs;
         }
 
-        public static ProgrammaDTO GetProgrammaDTOWithID(int ID)
+        public ProgrammaDTO GetProgrammaDTOWithID(int ID)
         {
             ProgrammaDTO programmaDTO = new ProgrammaDTO();
 
@@ -60,7 +60,7 @@ namespace DataAccessLayer.DALs
             return programmaDTO;
         }
 
-        public static void UpdateProgramma(int ID, string ThuisTeam, string UitTeam, string DatumString)
+        public void UpdateProgramma(int ID, string ThuisTeam, string UitTeam, string DatumString)
         {
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
@@ -76,7 +76,7 @@ namespace DataAccessLayer.DALs
             }
         }
 
-        public static void DeleteProgramma(int ID)
+        public void DeleteProgramma(int ID)
         {
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {

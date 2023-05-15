@@ -41,7 +41,7 @@ namespace DataAccessLayer.DALs
             return wedstrijden;
         }
             
-        public static void CreateWedstrijd(WedstrijdDTO wedstrijdDTO)
+        public void CreateWedstrijd(WedstrijdDTO wedstrijdDTO)
         {
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {

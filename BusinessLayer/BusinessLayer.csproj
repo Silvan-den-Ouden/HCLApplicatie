@@ -91,6 +91,10 @@
       <Project>{c90df534-cdf9-4f0b-83e9-96a158f8907f}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
+      <Project>{033be555-ef1d-4484-9c70-a61e4368ec2e}</Project>
+      <Name>DataTransferObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

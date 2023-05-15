@@ -1,6 +1,4 @@
 ﻿using System;
-using DataAccessLayer.DALs;
-using DataAccessLayer.DTOs;
 
 namespace BusinessLayer.Models
 {
@@ -14,20 +12,5 @@ namespace BusinessLayer.Models
         public DateTime Datum { get; set; }
 
         public Wedstrijd() { }
-
-        public void CreateWedstrijd(Wedstrijd wedstrijd)
-        {
-            WedstrijdDTO wedstrijdDTO = new WedstrijdDTO()
-            {
-                ID = wedstrijd.ID,
-                ThuisTeam = wedstrijd.ThuisTeam,
-                ThuisScore = wedstrijd.ThuisScore,
-                UitScore = wedstrijd.UitScore,
-                UitTeam = wedstrijd.UitTeam,
-                Datum = wedstrijd.Datum,
-            };
-
-            WedstrijdDAL.CreateWedstrijd(wedstrijdDTO);
-        }
     }
 }

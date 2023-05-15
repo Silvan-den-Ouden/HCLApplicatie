@@ -27,10 +27,7 @@ namespace HCLApplicatie2.Controllers
         }
 
         public IActionResult Wedstrijden()
-        {
-            ViewData["wedstrijden"] = WedstrijdCollection.GetWedstrijden();
-            
-
+        {   
             return View();
         }
         public IActionResult Verslagen()

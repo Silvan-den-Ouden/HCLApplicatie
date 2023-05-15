@@ -10,11 +10,13 @@ namespace BusinessLayer.Collections
 {
     public class FotoCollection
     {
-        public static List<Foto> GetFotos()
+        private readonly FotoDAL _fotoDAL = new FotoDAL();
+
+        public List<Foto> GetFotos()
         {
             List<Foto> fotos = new List<Foto>();
 
-            foreach (var foto in FotoDAL.GetFotoDTOs())
+            foreach (var foto in _fotoDAL.GetFotoDTOs())
             {
                 Foto f = new Foto()
                 {

@@ -8,10 +8,12 @@ namespace HCLApplicatie2.Controllers
 {
     public class WedstrijdenController : Controller
     {
+        private readonly WedstrijdCollection _wedstrijdCollection = new();
+
         // GET: WedstrijdenController
         public ActionResult Index()
         {
-            List<Wedstrijd> WedstrijdList = WedstrijdCollection.GetWedstrijden();
+            List<Wedstrijd> WedstrijdList = _wedstrijdCollection.GetWedstrijden();
 
             return View(WedstrijdList);
         }
@@ -35,7 +37,7 @@ namespace HCLApplicatie2.Controllers
         {
             try
             {
-                wedstrijd.CreateWedstrijd(wedstrijd);
+                _wedstrijdCollection.CreateWedstrijd(wedstrijd);
 
                 return View();
             }

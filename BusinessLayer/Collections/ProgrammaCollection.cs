@@ -10,11 +10,13 @@ namespace BusinessLayer.Collections
 {
     public class ProgrammaCollection
     {
-        public static List<ProgrammaModel> GetProgramma()
+        private readonly ProgrammaDAL _programmaDAL = new ProgrammaDAL();
+
+        public List<ProgrammaModel> GetProgramma()
         {
             List<ProgrammaModel> programmaList = new List<ProgrammaModel>();
 
-            foreach (var programmaItem in ProgrammaDAL.GetProgrammaDTOs())
+            foreach (var programmaItem in _programmaDAL.GetProgrammaDTOs())
             {
                 ProgrammaModel p = new ProgrammaModel()
                 {
@@ -29,9 +31,9 @@ namespace BusinessLayer.Collections
             return programmaList;
         }
 
-        public static ProgrammaModel GetProgrammaWithID(int ID)
+        public ProgrammaModel GetProgrammaWithID(int ID)
         {
-            var programmaDTO = ProgrammaDAL.GetProgrammaDTOWithID(ID);
+            var programmaDTO = _programmaDAL.GetProgrammaDTOWithID(ID);
             ProgrammaModel programma = new ProgrammaModel()
             {
                 ID = programmaDTO.ID,
@@ -43,18 +45,18 @@ namespace BusinessLayer.Collections
             return programma;
         }
 
-        public static void UpdateProgramma(int ID, string ThuisTeam, string UitTeam, DateTime Datum)
+        public void UpdateProgramma(int ID, string ThuisTeam, string UitTeam, DateTime Datum)
         {
             string DatumString = $"{Datum.Year}-{Datum.Month}-{Datum.Day}";
             string TijdString = $"{Datum.TimeOfDay}";
             DatumString += " " + TijdString;
 
-            ProgrammaDAL.UpdateProgramma(ID, ThuisTeam, UitTeam, DatumString);
+            _programmaDAL.UpdateProgramma(ID, ThuisTeam, UitTeam, DatumString);
         }
 
-        public static void DeleteProgramma(int ID)
+        public void DeleteProgramma(int ID)
         {
-            ProgrammaDAL.DeleteProgramma(ID);
+            _programmaDAL.DeleteProgramma(ID);
         }
     }
 }
