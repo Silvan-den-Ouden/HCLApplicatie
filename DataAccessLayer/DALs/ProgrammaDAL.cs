@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataTransferObjects;
+using Interfaces;
 using MySql.Data.MySqlClient;
 
 namespace DataAccessLayer.DALs
 {
-    public class ProgrammaDAL
+    public class ProgrammaDAL : IProgramma
     {
         public List<ProgrammaDTO> GetProgrammaDTOs()
         {

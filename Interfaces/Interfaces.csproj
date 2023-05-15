@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGetWedstrijden.cs" />
+    <Compile Include="IProgramma.cs" />
     <Compile Include="IWedstrijd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
