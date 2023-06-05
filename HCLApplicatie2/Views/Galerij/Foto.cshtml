@@ -9,7 +9,8 @@
 <img src="@Model.Foto.URL" alt="image_@Model.Foto.ID" height="400">
 <br />
 <br />
-<input type="button" value="Terug" class="btn btn-danger" onclick="location.href='/Galerij'"/>
+<input type="button" value="Terug" class="btn btn-primary" onclick="location.href='/Galerij'"/>
+<input type="button" value="Verwijder" class="btn btn-danger" onclick="DeleteFoto(@Model.Foto.ID)">
 
 @if (Model.Foto.Public == 0)
 {
@@ -52,5 +53,19 @@
                 }
             });
         }
+    }
+
+    function DeleteFoto(ID){
+        $.ajax({
+            url: '@Url.Action("DeleteFoto", "Galerij")',
+            type: 'GET',
+            data: { ID: ID},
+            //success: function (data){
+            //    console.log(data);
+            //},
+            //error: function (error){
+            //    console.log("error");
+            //}
+        });
     }
 </script>

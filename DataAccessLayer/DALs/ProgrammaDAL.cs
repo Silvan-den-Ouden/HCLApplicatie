@@ -72,7 +72,8 @@ namespace DataAccessLayer.DALs
                 cmd.Parameters.AddWithValue("@DatumTijd", DatumString);
                 cmd.Parameters.AddWithValue("@ID", ID);
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
+
                 con.Close();
             }
         }
@@ -83,7 +84,9 @@ namespace DataAccessLayer.DALs
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand($"Delete from `programma` where `id` = {ID}", con);
-                MySqlDataReader reader = cmd.ExecuteReader();
+
+                cmd.ExecuteNonQuery();
+
                 con.Close();
             }
         }

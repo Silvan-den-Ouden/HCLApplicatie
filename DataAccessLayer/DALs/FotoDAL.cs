@@ -70,7 +70,8 @@ namespace DataAccessLayer.DALs
                 MySqlCommand cmd = new MySqlCommand("Update `foto` set `public` = 1 where `ID` = @ID", con);
                 cmd.Parameters.AddWithValue("@ID", ID);
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
+
                 con.Close();
             }
         }
@@ -82,8 +83,29 @@ namespace DataAccessLayer.DALs
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("Update `foto` set `public` = 0 where `ID` = @ID", con);
                 cmd.Parameters.AddWithValue("@ID", ID);
+                
+                cmd.ExecuteNonQuery();
+                
+                con.Close();
+            }
+        }
+        
+        public void DeleteFoto(int ID)
+        {
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlCommand deleteCmd = new MySqlCommand("DELETE FROM `foto` WHERE `ID` = @ID", con);
+                deleteCmd.Parameters.AddWithValue("@ID", ID);
+                deleteCmd.ExecuteNonQuery();
+
+                MySqlCommand getMaxIndexCmd = new MySqlCommand("SELECT MAX(`ID`) FROM `foto`", con);
+                int maxIndex = Convert.ToInt32(getMaxIndexCmd.ExecuteScalar());
+                
+                MySqlCommand resetAutoIncrementCmd = new MySqlCommand($"ALTER TABLE `foto` AUTO_INCREMENT = {maxIndex + 1}", con);
+                resetAutoIncrementCmd.ExecuteNonQuery();
+
                 con.Close();
             }
         }

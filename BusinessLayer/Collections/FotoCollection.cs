@@ -57,5 +57,10 @@ namespace BusinessLayer.Collections
                 _fotoDAL.ChangeFotoToPrivate(ID);
             }
         }
+
+        public void DeleteFoto(int ID)
+        {
+            _fotoDAL.DeleteFoto(ID);
+        }
     }
 }

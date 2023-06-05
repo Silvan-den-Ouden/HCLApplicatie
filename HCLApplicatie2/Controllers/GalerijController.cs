@@ -33,5 +33,10 @@ namespace HCLApplicatie2.Controllers
             _fotoCollection.ChangeFotoPublicity(ID, publicity);
             return publicity;
         }
+
+        public void DeleteFoto(int ID)
+        {
+            _fotoCollection.DeleteFoto(ID);
+        }
     }
 }
