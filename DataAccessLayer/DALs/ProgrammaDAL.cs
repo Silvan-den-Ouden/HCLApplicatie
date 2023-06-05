@@ -45,8 +45,9 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand($"SELECT * FROM `programma` WHERE ID = {ID}", con);
-                MySqlDataReader reader = sqlCom.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `programma` WHERE ID = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+                MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -83,7 +84,8 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand($"DELETE FROM `programma` WHERE `id` = {ID}", con);
+                MySqlCommand cmd = new MySqlCommand($"DELETE FROM `programma` WHERE ID = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
 
                 cmd.ExecuteNonQuery();
 
