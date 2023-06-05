@@ -16,16 +16,34 @@ namespace BusinessLayer.Collections
         {
             List<Foto> fotos = new List<Foto>();
 
-            foreach (var foto in _fotoDAL.GetFotoDTOs())
+            foreach (var fotoDTO in _fotoDAL.GetFotoDTOs())
             {
                 Foto f = new Foto()
                 {
-                    ID = foto.ID,
-                    URL = foto.URL,
+                    ID = fotoDTO.ID,
+                    Account_ID = fotoDTO.Account_ID,
+                    Team_ID = fotoDTO.Team_ID,
+                    Public = fotoDTO.Public,
+                    URL = fotoDTO.URL,
                 };
                 fotos.Add(f);
             }
             return fotos;
+        }
+
+        public Foto GetFotoWithID(int ID)
+        {
+            var fotoDTO = _fotoDAL.GetFotoWithID(ID);
+            Foto foto = new Foto()
+            {
+                ID = fotoDTO.ID,
+                Account_ID = fotoDTO.Account_ID,
+                Team_ID = fotoDTO.Team_ID,
+                Public = fotoDTO.Public,
+                URL = fotoDTO.URL,
+            };
+
+            return foto;
         }
     }
 }

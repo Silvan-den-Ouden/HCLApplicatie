@@ -3,29 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessLayer.DALs;
 using DataTransferObjects;
 using BusinessLayer.Models;
 using Interfaces;
+using Factory;
 
 namespace BusinessLayer.Collections
 {
     public class WedstrijdCollection
     {
-        private readonly WedstrijdDAL _wedstrijdDAL = new WedstrijdDAL();
-        private readonly IWedstrijdFactory _wedstrijdFactory;
-
-        public WedstrijdCollection(IWedstrijdFactory wedstrijdFactory)
-        {
-            _wedstrijdFactory = wedstrijdFactory;
-        }
+       
+        private readonly WedstrijdFactory _wedstrijdFactory = new WedstrijdFactory();
 
         public List<Wedstrijd> GetWedstrijden()
         {
+            IWedstrijd _wedstrijdDAL = _wedstrijdFactory.CreateWedstrijdDAL();
             List<Wedstrijd> wedstrijden = new List<Wedstrijd>();
-            IWedstrijd wedstrijdInterface = _wedstrijdFactory.CreateWedstrijd();
 
-            foreach (var wedstrijd in wedstrijdInterface.GetWedstrijdInfo())
+            foreach (var wedstrijd in _wedstrijdDAL.GetWedstrijdInfo())
             {
                 Wedstrijd w = new Wedstrijd()
                 {
@@ -44,6 +39,8 @@ namespace BusinessLayer.Collections
 
         public void CreateWedstrijd(Wedstrijd wedstrijd)
         {
+            IWedstrijd _wedstrijdDAL = _wedstrijdFactory.CreateWedstrijdDAL();
+
             WedstrijdDTO wedstrijdDTO = new WedstrijdDTO()
             {
                 ID = wedstrijd.ID,

@@ -25,12 +25,12 @@ namespace DataAccessLayer.DALs
                 {
                     AccountDTO u = new AccountDTO()
                     {
-                        ID = reader.GetInt32(0),
-                        Naam = reader.GetString(1),
-                        Email = reader.GetString(2),
-                        Wachtwoord = reader.GetString(3),
-                        Team = reader.GetString(4),
-                        Rol = reader.GetString(5),
+                        ID = reader.GetInt32("ID"),
+                        Naam = reader.GetString("naam"),
+                        Email = reader.GetString("email"),
+                        Wachtwoord = reader.GetString("wachtwoord"),
+                        Team = reader.GetString("team"),
+                        Rol = reader.GetString("rol"),
                     };
                     users.Add(u);
                 }
@@ -39,10 +39,35 @@ namespace DataAccessLayer.DALs
             return users;
         }
 
-        public int LoggedInUser()
+        public AccountDTO GetAccountWithID(int ID)
         {
-            int UID = 2;
-            return UID;
+            AccountDTO account = new AccountDTO();
+
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand sqlCom = new MySqlCommand("Select * From `account` where `ID` = @ID", con);
+                sqlCom.Parameters.AddWithValue("@ID", ID);
+                MySqlDataReader reader = sqlCom.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    account.ID = reader.GetInt32("ID");
+                    account.Naam = reader.GetString("naam");
+                    account.Email = reader.GetString("email");
+                    account.Wachtwoord = reader.GetString("wachtwoord");
+                    account.Team = reader.GetString("team");
+                    account.Rol = reader.GetString("rol");
+                }
+                con.Close();
+            }
+            return account;
         }
+
+        //public int LoggedInUser()
+        //{
+        //    int UID = 2;
+        //    return UID;
+        //}
     }
 }

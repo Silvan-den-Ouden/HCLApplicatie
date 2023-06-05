@@ -79,6 +79,7 @@
     <Compile Include="DALs\AccountDAL.cs" />
     <Compile Include="DALs\FotoDAL.cs" />
     <Compile Include="DALs\ProgrammaDAL.cs" />
+    <Compile Include="DALs\TeamDAL.cs" />
     <Compile Include="DALs\WedstrijdDAL.cs" />
     <Compile Include="DTOs\AccountDTO.cs" />
     <Compile Include="ConnectorClass.cs" />

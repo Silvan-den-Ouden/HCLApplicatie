@@ -8,7 +8,7 @@ namespace HCLApplicatie2.Controllers
 {
     public class WedstrijdenController : Controller
     {
-        private readonly WedstrijdCollection _wedstrijdCollection = new();
+        private readonly WedstrijdCollection _wedstrijdCollection = new WedstrijdCollection();
 
         // GET: WedstrijdenController
         public ActionResult Index()

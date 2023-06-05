@@ -1,10 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Index";
+    int i = 0;
 }
 
 <h1>Index</h1>
 
 @foreach(var foto in @Model)
 {
-    <img src="@foto.URL" alt="image" >
+    <img src="@foto.URL" alt="image_@i" height = "400" onclick="SelectFoto(@foto.ID)">
+    i++;
 }
+
+<script>
+    function SelectFoto(ID){
+        console.log(ID);
+        location.href = 'Galerij/Foto?ID=' + ID;
+    }
+</script>

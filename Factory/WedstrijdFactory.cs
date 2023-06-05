@@ -8,9 +8,9 @@ using Interfaces;
 
 namespace Factory
 {
-    public class WedstrijdFactory : IWedstrijdFactory
+    public class WedstrijdFactory 
     {
-        public IWedstrijd CreateWedstrijd()
+        public IWedstrijd CreateWedstrijdDAL()
         {
             return new WedstrijdDAL();
         }

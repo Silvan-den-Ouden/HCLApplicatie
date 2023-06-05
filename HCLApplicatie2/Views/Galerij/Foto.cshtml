@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Foto";
+}
+
+<h1>Foto</h1>
+<h2>Geupload door @Model.Account.Naam</h2>
+<img src="@Model.Foto.URL" alt="image_@Model.Foto.ID" height="400">
+<br />
+<br />
+<input type="button" value="Terug" class="btn btn-danger" onclick="location.href='/Galerij'"/>
+
