@@ -14,7 +14,7 @@ namespace BusinessLayer.Collections
 
         public List<FotoModel> GetFotos()
         {
-            List<FotoModel> fotos = new List<FotoModel>();
+            List<FotoModel> fotoModels = new List<FotoModel>();
 
             foreach (var fotoDTO in _fotoDAL.GetFotoDTOs())
             {
@@ -26,15 +26,15 @@ namespace BusinessLayer.Collections
                     Public = fotoDTO.Public,
                     URL = fotoDTO.URL,
                 };
-                fotos.Add(f);
+                fotoModels.Add(f);
             }
-            return fotos;
+            return fotoModels;
         }
 
         public FotoModel GetFotoWithID(int ID)
         {
             var fotoDTO = _fotoDAL.GetFotoWithID(ID);
-            FotoModel foto = new FotoModel()
+            FotoModel fotoModel = new FotoModel()
             {
                 ID = fotoDTO.ID,
                 Account_ID = fotoDTO.Account_ID,
@@ -43,7 +43,7 @@ namespace BusinessLayer.Collections
                 URL = fotoDTO.URL,
             };
 
-            return foto;
+            return fotoModel;
         }
     }
 }

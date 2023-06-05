@@ -18,23 +18,23 @@ namespace BusinessLayer.Collections
         public List<WedstrijdModel> GetWedstrijden()
         {
             IWedstrijd _wedstrijdDAL = _wedstrijdFactory.CreateWedstrijdDAL();
-            List<WedstrijdModel> wedstrijden = new List<WedstrijdModel>();
+            List<WedstrijdModel> wedstrijdModels = new List<WedstrijdModel>();
 
-            foreach (var wedstrijd in _wedstrijdDAL.GetWedstrijdDTOs())
+            foreach (var wedstrijdDTO in _wedstrijdDAL.GetWedstrijdDTOs())
             {
                 WedstrijdModel w = new WedstrijdModel()
                 {
-                    ID = wedstrijd.ID,
-                    ThuisTeam = wedstrijd.ThuisTeam,
-                    ThuisScore = wedstrijd.ThuisScore,
-                    UitScore = wedstrijd.UitScore,
-                    UitTeam = wedstrijd.UitTeam,
-                    Datum = wedstrijd.Datum,
+                    ID = wedstrijdDTO.ID,
+                    ThuisTeam = wedstrijdDTO.ThuisTeam,
+                    ThuisScore = wedstrijdDTO.ThuisScore,
+                    UitScore = wedstrijdDTO.UitScore,
+                    UitTeam = wedstrijdDTO.UitTeam,
+                    Datum = wedstrijdDTO.Datum,
                 };
-                wedstrijden.Add(w);
+                wedstrijdModels.Add(w);
             }
 
-            return wedstrijden;
+            return wedstrijdModels;
         }
 
         public void CreateWedstrijd(WedstrijdModel wedstrijd)

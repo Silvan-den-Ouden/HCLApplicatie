@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-//using BusinessLayer;
 using BusinessLayer.Collections;
 using Microsoft.AspNetCore.Mvc;
 using HCLApplicatie2.ViewModels;

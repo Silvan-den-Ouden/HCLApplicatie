@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.DALs;
 using BusinessLayer.Models;
-using DataTransferObjects;
 
 namespace BusinessLayer.Collections
 {
@@ -13,9 +12,9 @@ namespace BusinessLayer.Collections
     {
         private readonly AccountDAL _accountDAL = new AccountDAL();
 
-        public List<AccountModel> GetUsers()
+        public List<AccountModel> GetAccounts()
         {
-            List<AccountModel> accounts = new List<AccountModel>();
+            List<AccountModel> accountModels = new List<AccountModel>();
 
             foreach (var accountDTO in _accountDAL.GetAccountDTOs())
             {
@@ -28,15 +27,15 @@ namespace BusinessLayer.Collections
                     Team = accountDTO.Team,
                     Rol = accountDTO.Rol,
                 };
-                accounts.Add(u);
+                accountModels.Add(u);
             }
-            return accounts;
+            return accountModels;
         }
 
         public AccountModel GetAccountWithID(int ID)
         {
             var accountDTO = _accountDAL.GetAccountWithID(ID);
-            AccountModel account = new AccountModel()
+            AccountModel accountModel = new AccountModel()
             {
                 ID = accountDTO.ID,
                 Naam = accountDTO.Naam,
@@ -46,7 +45,7 @@ namespace BusinessLayer.Collections
                 Rol = accountDTO.Rol,
             };
 
-            return account;
+            return accountModel;
         }
     }
 }

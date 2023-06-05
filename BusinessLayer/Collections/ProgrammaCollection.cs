@@ -14,27 +14,27 @@ namespace BusinessLayer.Collections
 
         public List<ProgrammaModel> GetProgramma()
         {
-            List<ProgrammaModel> programmaList = new List<ProgrammaModel>();
+            List<ProgrammaModel> programmaModels = new List<ProgrammaModel>();
 
-            foreach (var programmaItem in _programmaDAL.GetProgrammaDTOs())
+            foreach (var programmaDTO in _programmaDAL.GetProgrammaDTOs())
             {
                 ProgrammaModel p = new ProgrammaModel()
                 {
-                    ID = programmaItem.ID,
-                    ThuisTeam = programmaItem.ThuisTeam,
-                    UitTeam = programmaItem.UitTeam,
-                    DatumTijd = programmaItem.DatumTijd,
+                    ID = programmaDTO.ID,
+                    ThuisTeam = programmaDTO.ThuisTeam,
+                    UitTeam = programmaDTO.UitTeam,
+                    DatumTijd = programmaDTO.DatumTijd,
                 };
-                programmaList.Add(p);
+                programmaModels.Add(p);
             }
 
-            return programmaList;
+            return programmaModels;
         }
 
         public ProgrammaModel GetProgrammaWithID(int ID)
         {
             var programmaDTO = _programmaDAL.GetProgrammaDTOWithID(ID);
-            ProgrammaModel programma = new ProgrammaModel()
+            ProgrammaModel programmaModel = new ProgrammaModel()
             {
                 ID = programmaDTO.ID,
                 ThuisTeam = programmaDTO.ThuisTeam,
@@ -42,7 +42,7 @@ namespace BusinessLayer.Collections
                 DatumTijd = programmaDTO.DatumTijd,
             };
             
-            return programma;
+            return programmaModel;
         }
 
         public void UpdateProgramma(int ID, string ThuisTeam, string UitTeam, DateTime Datum)

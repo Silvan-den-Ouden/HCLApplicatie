@@ -79,6 +79,7 @@
     <Compile Include="Collections\AccountCollection.cs" />
     <Compile Include="Collections\FotoCollection.cs" />
     <Compile Include="Collections\ProgrammaCollection.cs" />
+    <Compile Include="Collections\TeamCollection.cs" />
     <Compile Include="Collections\WedstrijdCollection.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\FotoModel.cs" />
