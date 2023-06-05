@@ -61,5 +61,31 @@ namespace DataAccessLayer.DALs
             }
             return fotoDTO;
         }
+
+        public void ChangeFotoToPublic(int ID)
+        {
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("Update `foto` set `public` = 1 where `ID` = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                con.Close();
+            }
+        }
+
+        public void ChangeFotoToPrivate(int ID)
+        {
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("Update `foto` set `public` = 0 where `ID` = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                con.Close();
+            }
+        }
     }
 }

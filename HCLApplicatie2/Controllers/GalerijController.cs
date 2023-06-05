@@ -9,6 +9,7 @@ namespace HCLApplicatie2.Controllers
     {
         private readonly FotoCollection _fotoCollection = new();
         private readonly AccountCollection _accountCollection = new();
+        private readonly TeamCollection _teamCollection = new();
 
         public IActionResult Index()
         {
@@ -21,9 +22,16 @@ namespace HCLApplicatie2.Controllers
         {
             FotoModel foto = _fotoCollection.GetFotoWithID(ID);
             AccountModel account = _accountCollection.GetAccountWithID(foto.Account_ID);
+            TeamModel team = _teamCollection.GetTeamWithID(foto.Team_ID);
 
-            FotoViewModel fotoViewModel = new FotoViewModel(foto, account);
+            FotoViewModel fotoViewModel = new FotoViewModel(foto, account, team);
             return View(fotoViewModel);
+        }
+
+        public string UpdatePublicity(int ID, string publicity)
+        {
+            _fotoCollection.ChangeFotoPublicity(ID, publicity);
+            return publicity;
         }
     }
 }

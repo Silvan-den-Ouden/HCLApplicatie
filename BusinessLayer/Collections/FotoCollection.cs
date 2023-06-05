@@ -45,5 +45,17 @@ namespace BusinessLayer.Collections
 
             return fotoModel;
         }
+
+        public void ChangeFotoPublicity(int ID, string publicity)
+        {
+            if(publicity == "Public")
+            {
+                _fotoDAL.ChangeFotoToPublic(ID);
+            } 
+            if(publicity == "Private")
+            {
+                _fotoDAL.ChangeFotoToPrivate(ID);
+            }
+        }
     }
 }

@@ -7,10 +7,13 @@ namespace HCLApplicatie2.ViewModels
         public FotoModel Foto { get; set; }
 
         public AccountModel Account { get; set; }
+        public TeamModel Team { get; set; }
 
-        public FotoViewModel(FotoModel foto, AccountModel account) {
+        public FotoViewModel(FotoModel foto, AccountModel account, TeamModel team)
+        {
             Foto = foto;
             Account = account;
+            Team = team;
         }
     }
 }

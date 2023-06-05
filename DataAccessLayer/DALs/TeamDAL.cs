@@ -17,7 +17,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * From `foto` where `ID` = @ID", con);
+                MySqlCommand sqlCom = new MySqlCommand("Select * From `team` where `ID` = @ID", con);
                 sqlCom.Parameters.AddWithValue("@ID", ID);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
