@@ -6,9 +6,9 @@ namespace HCLApplicatie2.ViewModels
     {
         public FotoModel Foto { get; set; }
 
-        public Account Account { get; set; }
+        public AccountModel Account { get; set; }
 
-        public FotoViewModel(FotoModel foto, Account account) {
+        public FotoViewModel(FotoModel foto, AccountModel account) {
             Foto = foto;
             Account = account;
         }

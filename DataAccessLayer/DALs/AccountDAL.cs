@@ -11,9 +11,9 @@ namespace DataAccessLayer.DALs
 {
     public class AccountDAL
     {
-        public List<AccountDTO> GetUserInfo()
+        public List<AccountDTO> GetAccountDTOs()
         {
-            List<AccountDTO> users = new List<AccountDTO>();
+            List<AccountDTO> accountDTOs = new List<AccountDTO>();
 
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
@@ -32,11 +32,11 @@ namespace DataAccessLayer.DALs
                         Team = reader.GetString("team"),
                         Rol = reader.GetString("rol"),
                     };
-                    users.Add(u);
+                    accountDTOs.Add(u);
                 }
                 con.Close();
             }
-            return users;
+            return accountDTOs;
         }
 
         public AccountDTO GetAccountWithID(int ID)

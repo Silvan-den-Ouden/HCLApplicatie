@@ -9,7 +9,7 @@ namespace Interfaces
 {
     public interface IWedstrijd
     {
-        List<WedstrijdDTO> GetWedstrijdInfo();
+        List<WedstrijdDTO> GetWedstrijdDTOs();
         void CreateWedstrijd(WedstrijdDTO wedstrijdDTO);
     }
 }

@@ -12,9 +12,9 @@ namespace DataAccessLayer.DALs
 {
     public class WedstrijdDAL : IWedstrijd
     {
-        public List<WedstrijdDTO> GetWedstrijdInfo()
+        public List<WedstrijdDTO> GetWedstrijdDTOs()
         {
-            List<WedstrijdDTO> wedstrijden = new List<WedstrijdDTO>();
+            List<WedstrijdDTO> wedstrijdDTOs = new List<WedstrijdDTO>();
 
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
@@ -33,12 +33,12 @@ namespace DataAccessLayer.DALs
                         UitTeam = reader.GetString(4),
                         Datum = reader.GetDateTime(5)
                     };
-                    wedstrijden.Add(w);
+                    wedstrijdDTOs.Add(w);
                 }
                 con.Close();
             }
 
-            return wedstrijden;
+            return wedstrijdDTOs;
         }
             
         public void CreateWedstrijd(WedstrijdDTO wedstrijdDTO)

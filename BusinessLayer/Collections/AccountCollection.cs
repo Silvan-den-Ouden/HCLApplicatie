@@ -17,7 +17,7 @@ namespace BusinessLayer.Collections
         {
             List<AccountModel> accounts = new List<AccountModel>();
 
-            foreach (var accountDTO in _accountDAL.GetUserInfo())
+            foreach (var accountDTO in _accountDAL.GetAccountDTOs())
             {
                 AccountModel u = new AccountModel()
                 {
@@ -48,28 +48,5 @@ namespace BusinessLayer.Collections
 
             return account;
         }
-
-        //public Account loggedInUser()
-        //{
-        //    Account loggedInUser = new Account();
-
-        //    foreach (var account in GetUsers())
-        //    {
-        //        if (account.ID == GetUID())
-        //        {
-        //            loggedInUser = account;
-        //        }
-        //    }
-
-        //    return loggedInUser;
-        //}
-
-        ////hard-coded "logged in" user
-        //public int GetUID()
-        //{
-        //    int account = _accountDAL.LoggedInUser();
-        //    return account;
-        //}
-
     }
 }

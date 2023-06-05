@@ -20,7 +20,7 @@ namespace BusinessLayer.Collections
             IWedstrijd _wedstrijdDAL = _wedstrijdFactory.CreateWedstrijdDAL();
             List<WedstrijdModel> wedstrijden = new List<WedstrijdModel>();
 
-            foreach (var wedstrijd in _wedstrijdDAL.GetWedstrijdInfo())
+            foreach (var wedstrijd in _wedstrijdDAL.GetWedstrijdDTOs())
             {
                 WedstrijdModel w = new WedstrijdModel()
                 {
