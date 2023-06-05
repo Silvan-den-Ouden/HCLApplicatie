@@ -2,7 +2,7 @@
 
 namespace BusinessLayer.Models
 {
-    public class Wedstrijd
+    public class WedstrijdModel
     {
         public int ID { get; set; }
         public string ThuisTeam { get; set; }
@@ -11,6 +11,6 @@ namespace BusinessLayer.Models
         public string UitTeam { get; set; }
         public DateTime Datum { get; set; }
 
-        public Wedstrijd() { }
+        public WedstrijdModel() { }
     }
 }

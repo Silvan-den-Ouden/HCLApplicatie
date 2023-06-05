@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Models
 {
-    public class Account
+    public class AccountModel
     {
         public int ID { get; set; }
         public string Naam { get; set; }
@@ -15,6 +15,6 @@ namespace BusinessLayer.Models
         public string Team { get; set; }
         public string Rol { get; set; }
 
-        public Account(){ }
+        public AccountModel(){ }
     }
 }

@@ -13,7 +13,7 @@ namespace HCLApplicatie2.Controllers
         // GET: WedstrijdenController
         public ActionResult Index()
         {
-            List<Wedstrijd> WedstrijdList = _wedstrijdCollection.GetWedstrijden();
+            List<WedstrijdModel> WedstrijdList = _wedstrijdCollection.GetWedstrijden();
 
             return View(WedstrijdList);
         }
@@ -33,7 +33,7 @@ namespace HCLApplicatie2.Controllers
         // POST: WedstrijdenController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Create(Wedstrijd wedstrijd)
+        public IActionResult Create(WedstrijdModel wedstrijd)
         {
             try
             {

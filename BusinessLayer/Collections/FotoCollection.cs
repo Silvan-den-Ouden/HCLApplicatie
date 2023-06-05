@@ -12,13 +12,13 @@ namespace BusinessLayer.Collections
     {
         private readonly FotoDAL _fotoDAL = new FotoDAL();
 
-        public List<Foto> GetFotos()
+        public List<FotoModel> GetFotos()
         {
-            List<Foto> fotos = new List<Foto>();
+            List<FotoModel> fotos = new List<FotoModel>();
 
             foreach (var fotoDTO in _fotoDAL.GetFotoDTOs())
             {
-                Foto f = new Foto()
+                FotoModel f = new FotoModel()
                 {
                     ID = fotoDTO.ID,
                     Account_ID = fotoDTO.Account_ID,
@@ -31,10 +31,10 @@ namespace BusinessLayer.Collections
             return fotos;
         }
 
-        public Foto GetFotoWithID(int ID)
+        public FotoModel GetFotoWithID(int ID)
         {
             var fotoDTO = _fotoDAL.GetFotoWithID(ID);
-            Foto foto = new Foto()
+            FotoModel foto = new FotoModel()
             {
                 ID = fotoDTO.ID,
                 Account_ID = fotoDTO.Account_ID,

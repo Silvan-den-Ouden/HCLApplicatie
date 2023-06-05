@@ -15,14 +15,14 @@ namespace BusinessLayer.Collections
        
         private readonly WedstrijdFactory _wedstrijdFactory = new WedstrijdFactory();
 
-        public List<Wedstrijd> GetWedstrijden()
+        public List<WedstrijdModel> GetWedstrijden()
         {
             IWedstrijd _wedstrijdDAL = _wedstrijdFactory.CreateWedstrijdDAL();
-            List<Wedstrijd> wedstrijden = new List<Wedstrijd>();
+            List<WedstrijdModel> wedstrijden = new List<WedstrijdModel>();
 
             foreach (var wedstrijd in _wedstrijdDAL.GetWedstrijdInfo())
             {
-                Wedstrijd w = new Wedstrijd()
+                WedstrijdModel w = new WedstrijdModel()
                 {
                     ID = wedstrijd.ID,
                     ThuisTeam = wedstrijd.ThuisTeam,
@@ -37,7 +37,7 @@ namespace BusinessLayer.Collections
             return wedstrijden;
         }
 
-        public void CreateWedstrijd(Wedstrijd wedstrijd)
+        public void CreateWedstrijd(WedstrijdModel wedstrijd)
         {
             IWedstrijd _wedstrijdDAL = _wedstrijdFactory.CreateWedstrijdDAL();
 

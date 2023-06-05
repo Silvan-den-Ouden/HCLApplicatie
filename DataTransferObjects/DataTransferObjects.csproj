@@ -45,6 +45,7 @@
     <Compile Include="FotoDTO.cs" />
     <Compile Include="ProgrammaDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamDTO.cs" />
     <Compile Include="WedstrijdDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

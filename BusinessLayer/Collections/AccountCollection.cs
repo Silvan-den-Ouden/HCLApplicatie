@@ -13,13 +13,13 @@ namespace BusinessLayer.Collections
     {
         private readonly AccountDAL _accountDAL = new AccountDAL();
 
-        public List<Account> GetUsers()
+        public List<AccountModel> GetUsers()
         {
-            List<Account> accounts = new List<Account>();
+            List<AccountModel> accounts = new List<AccountModel>();
 
             foreach (var accountDTO in _accountDAL.GetUserInfo())
             {
-                Account u = new Account()
+                AccountModel u = new AccountModel()
                 {
                     ID = accountDTO.ID,
                     Naam = accountDTO.Naam,
@@ -33,10 +33,10 @@ namespace BusinessLayer.Collections
             return accounts;
         }
 
-        public Account GetAccountWithID(int ID)
+        public AccountModel GetAccountWithID(int ID)
         {
             var accountDTO = _accountDAL.GetAccountWithID(ID);
-            Account account = new Account()
+            AccountModel account = new AccountModel()
             {
                 ID = accountDTO.ID,
                 Naam = accountDTO.Naam,

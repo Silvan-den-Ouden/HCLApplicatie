@@ -12,15 +12,15 @@ namespace HCLApplicatie2.Controllers
 
         public IActionResult Index()
         {
-            List<Foto> fotos = _fotoCollection.GetFotos();
+            List<FotoModel> fotos = _fotoCollection.GetFotos();
            
             return View(fotos);
         }
 
         public IActionResult Foto(int ID)
         {
-            Foto foto = _fotoCollection.GetFotoWithID(ID);
-            Account account = _accountCollection.GetAccountWithID(foto.Account_ID);
+            FotoModel foto = _fotoCollection.GetFotoWithID(ID);
+            AccountModel account = _accountCollection.GetAccountWithID(foto.Account_ID);
 
             FotoViewModel fotoViewModel = new FotoViewModel(foto, account);
             return View(fotoViewModel);
