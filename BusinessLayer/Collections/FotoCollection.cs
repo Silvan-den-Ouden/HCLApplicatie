@@ -31,6 +31,25 @@ namespace BusinessLayer.Collections
             return fotoModels;
         }
 
+        public List<FotoModel> GetPublicFotos()
+        {
+            List<FotoModel> fotoModels = new List<FotoModel>();
+
+            foreach (var fotoDTO in _fotoDAL.GetPublicFotos())
+            {
+                FotoModel f = new FotoModel()
+                {
+                    ID = fotoDTO.ID,
+                    Account_ID = fotoDTO.Account_ID,
+                    Team_ID = fotoDTO.Team_ID,
+                    Public = fotoDTO.Public,
+                    URL = fotoDTO.URL,
+                };
+                fotoModels.Add(f);
+            }
+            return fotoModels;
+        }
+
         public FotoModel GetFotoWithID(int ID)
         {
             var fotoDTO = _fotoDAL.GetFotoWithID(ID);

@@ -28,7 +28,34 @@ namespace DataAccessLayer.DALs
                         ID = reader.GetInt32("ID"),
                         Account_ID = reader.GetInt32("account_ID"),
                         Team_ID = reader.GetInt32("team_ID"),
-                        Public = reader.GetInt32("public"),
+                        Public = reader.GetString("public"),
+                        URL = reader.GetString("url"),
+                    };
+                    fotoDTOs.Add(f);
+                }
+                con.Close();
+            }
+            return fotoDTOs;
+        }
+
+        public List<FotoDTO> GetPublicFotos()
+        {
+            List<FotoDTO> fotoDTOs = new List<FotoDTO>();
+
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `foto` WHERE `public` = \"public\"", con);
+                MySqlDataReader reader = sqlCom.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    FotoDTO f = new FotoDTO()
+                    {
+                        ID = reader.GetInt32("ID"),
+                        Account_ID = reader.GetInt32("account_ID"),
+                        Team_ID = reader.GetInt32("team_ID"),
+                        Public = reader.GetString("public"),
                         URL = reader.GetString("url"),
                     };
                     fotoDTOs.Add(f);
@@ -54,7 +81,7 @@ namespace DataAccessLayer.DALs
                     fotoDTO.ID = reader.GetInt32("ID");
                     fotoDTO.Account_ID = reader.GetInt32("account_ID");
                     fotoDTO.Team_ID = reader.GetInt32("team_ID");
-                    fotoDTO.Public = reader.GetInt32("public");
+                    fotoDTO.Public = reader.GetString("public");
                     fotoDTO.URL = reader.GetString("url");
                 }
                 con.Close();
@@ -67,7 +94,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("UPDATE `foto` SET `public` = 1 WHERE `ID` = @ID", con);
+                MySqlCommand cmd = new MySqlCommand("UPDATE `foto` SET `public` = \"public\" WHERE `ID` = @ID", con);
                 cmd.Parameters.AddWithValue("@ID", ID);
 
                 cmd.ExecuteNonQuery();
@@ -81,7 +108,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("UPDATE `foto` SET `public` = 0 WHERE `ID` = @ID", con);
+                MySqlCommand cmd = new MySqlCommand("UPDATE `foto` SET `public` = \"private\" WHERE `ID` = @ID", con);
                 cmd.Parameters.AddWithValue("@ID", ID);
                 
                 cmd.ExecuteNonQuery();

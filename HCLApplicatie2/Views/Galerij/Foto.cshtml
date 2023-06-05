@@ -3,6 +3,8 @@
     ViewData["Title"] = "Foto";
 }
 
+@Model.Foto.Public
+
 <h1>Foto</h1>
 <h2>Geupload door @Model.Account.Naam</h2>
 <h2>Team: @Model.Team.Club, @Model.Team.Elftal</h2>
@@ -12,13 +14,13 @@
 <input type="button" value="Terug" class="btn btn-primary" onclick="location.href='/Galerij'"/>
 <input type="button" value="Verwijder" class="btn btn-danger" onclick="confirmDelete(@Model.Foto.ID)">
 
-@if (Model.Foto.Public == 0)
+@if (Model.Foto.Public == "private")
 {
     <input type="checkbox" id="publiekCheckbox" name="publiek" class="slider" onchange="changePublicity(@Model.Foto.ID)">
     <label for="publiek">Publiek</label>
 }
 
-@if (Model.Foto.Public == 1)
+@if (Model.Foto.Public == "public")
 {
     <input type="checkbox" id="publiekCheckbox" name="publiek" class="slider" onchange="changePublicity(@Model.Foto.ID)" checked>
     <label for="publiek">Publiek</label>

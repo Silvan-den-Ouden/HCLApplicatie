@@ -13,7 +13,7 @@ namespace HCLApplicatie2.Controllers
 
         public IActionResult Index()
         {
-            List<FotoModel> fotos = _fotoCollection.GetFotos();
+            List<FotoModel> fotos = _fotoCollection.GetPublicFotos();
            
             return View(fotos);
         }
