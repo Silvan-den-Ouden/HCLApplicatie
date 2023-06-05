@@ -14,8 +14,11 @@ namespace HCLApplicatie2.Controllers
         public IActionResult Index()
         {
             List<FotoModel> fotos = _fotoCollection.GetPublicFotos();
-           
-            return View(fotos);
+            List<TeamModel> teams = _teamCollection.GetTeams();
+
+            GalerijViewModel galerijViewModel = new GalerijViewModel(fotos, teams);
+
+            return View(galerijViewModel);
         }
 
         public IActionResult Foto(int ID)
@@ -26,6 +29,16 @@ namespace HCLApplicatie2.Controllers
 
             FotoViewModel fotoViewModel = new FotoViewModel(foto, account, team);
             return View(fotoViewModel);
+        }
+
+        public IActionResult GetFotos(int team_ID)
+        {
+            List<FotoModel> fotos = _fotoCollection.GetFotosFromTeam(team_ID);
+            List<TeamModel> teams = _teamCollection.GetTeams();
+
+            GalerijViewModel galerijViewModel = new GalerijViewModel(fotos, teams);
+
+            return View("Index", galerijViewModel);
         }
 
         public string UpdatePublicity(int ID, string publicity)

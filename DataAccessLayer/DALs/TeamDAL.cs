@@ -10,6 +10,32 @@ namespace DataAccessLayer.DALs
 {
     public class TeamDAL
     {
+        public List<TeamDTO> GetTeamDTOs()
+        {
+            List<TeamDTO> teamDTOs = new List<TeamDTO>();
+
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `team`", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    TeamDTO t = new TeamDTO()
+                    {
+                        ID = reader.GetInt32("ID"),
+                        Club = reader.GetString("club"),
+                        Elftal = reader.GetString("elftal")
+                    };
+                    teamDTOs.Add(t);
+                }
+                con.Close();
+            }
+            return teamDTOs;
+        }
+
+
         public TeamDTO GetTeamWithID(int ID)
         {
             TeamDTO teamDTO = new TeamDTO();

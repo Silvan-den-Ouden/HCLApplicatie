@@ -12,6 +12,23 @@ namespace BusinessLayer.Collections
     {
         private readonly TeamDAL _teamDAL = new TeamDAL();
 
+        public List<TeamModel> GetTeams()
+        {
+            List<TeamModel> teamModels = new List<TeamModel>();
+
+            foreach (var teamDTO in _teamDAL.GetTeamDTOs())
+            {
+                TeamModel t = new TeamModel()
+                {
+                    ID = teamDTO.ID,
+                    Club = teamDTO.Club,
+                    Elftal = teamDTO.Elftal,
+                };
+                teamModels.Add(t);
+            }
+            return teamModels;
+        }
+
         public TeamModel GetTeamWithID(int ID)
         {
             var teamDTO = _teamDAL.GetTeamWithID(ID);

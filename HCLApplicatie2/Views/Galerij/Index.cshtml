@@ -3,18 +3,56 @@
     int i = 0;
 }
 
+<div id="html-container">
+
 <h1>Index</h1>
 
-@foreach(var foto in @Model)
+<select name="team-select" id="team-select" onchange="teamSelect()">
+    <option>Selecteer Team</option>
+
+    <option value="publiek">Publieke foto's</option>
+    @foreach (var team in Model.TeamList)
+    {
+        <option value="@team.ID">@team.Club, @team.Elftal</option>
+    }
+</select>
+
+<br />
+
+@foreach(var foto in @Model.FotoList)
 {
-    <img src="@foto.URL" alt="image_@i" height = "400" onclick="SelectFoto(@foto.ID)">
+    <img src="@foto.URL" alt="image_@i" height = "400" onclick="selectFoto(@foto.ID)">
     i++;
 }
 
+</div>
+
 <script>
-    function SelectFoto(ID){
+    function selectFoto(ID){
         console.log(ID);
         location.href = 'Galerij/Foto?ID=' + ID;
+    }
+
+    function teamSelect(){
+        var value = document.getElementById("team-select").value;
+        
+        if (document.getElementById("team-select").value == 'publiek') {
+            location.href = "Galerij"
+        } else 
+        {
+            $.ajax({
+                url: '@Url.Action("GetFotos", "Galerij")',
+                type: 'GET',
+                data: { team_ID: value },
+                success: function (data) {
+                    var container = document.getElementById("html-container");
+                    container.innerHTML = data;
+                },
+                error: function (error) {
+                    console.log("error");
+                }
+            });
+        }
     }
 </script>
 

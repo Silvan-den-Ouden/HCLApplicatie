@@ -18,8 +18,8 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `foto`", con);
-                MySqlDataReader reader = sqlCom.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `foto`", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -45,8 +45,37 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `foto` WHERE `public` = \"public\"", con);
-                MySqlDataReader reader = sqlCom.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `foto` WHERE `public` = \"public\"", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    FotoDTO f = new FotoDTO()
+                    {
+                        ID = reader.GetInt32("ID"),
+                        Account_ID = reader.GetInt32("account_ID"),
+                        Team_ID = reader.GetInt32("team_ID"),
+                        Public = reader.GetString("public"),
+                        URL = reader.GetString("url"),
+                    };
+                    fotoDTOs.Add(f);
+                }
+                con.Close();
+            }
+            return fotoDTOs;
+        }
+
+        public List<FotoDTO> GetFotosFromTeam(int team_ID)
+        {
+            List<FotoDTO> fotoDTOs = new List<FotoDTO>();
+
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `foto` WHERE `team_ID` = @Team_ID", con);
+                cmd.Parameters.AddWithValue("Team_ID", team_ID);
+                
+                MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -72,9 +101,10 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `foto` WHERE `ID` = @ID", con);
-                sqlCom.Parameters.AddWithValue("@ID", ID);
-                MySqlDataReader reader = sqlCom.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `foto` WHERE `ID` = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
