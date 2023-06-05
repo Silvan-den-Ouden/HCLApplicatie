@@ -18,7 +18,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * From `foto`", con);
+                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `foto`", con);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
                 while (reader.Read())
@@ -45,7 +45,7 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * From `foto` where `ID` = @ID", con);
+                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `foto` WHERE `ID` = @ID", con);
                 sqlCom.Parameters.AddWithValue("@ID", ID);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
@@ -67,7 +67,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("Update `foto` set `public` = 1 where `ID` = @ID", con);
+                MySqlCommand cmd = new MySqlCommand("UPDATE `foto` SET `public` = 1 WHERE `ID` = @ID", con);
                 cmd.Parameters.AddWithValue("@ID", ID);
 
                 cmd.ExecuteNonQuery();
@@ -81,7 +81,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("Update `foto` set `public` = 0 where `ID` = @ID", con);
+                MySqlCommand cmd = new MySqlCommand("UPDATE `foto` SET `public` = 0 WHERE `ID` = @ID", con);
                 cmd.Parameters.AddWithValue("@ID", ID);
                 
                 cmd.ExecuteNonQuery();

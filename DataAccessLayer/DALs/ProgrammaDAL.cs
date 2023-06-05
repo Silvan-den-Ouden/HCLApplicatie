@@ -18,7 +18,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * from `programma` order by `DatumTijd` ASC ", con);
+                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `programma` ORDER BY `DatumTijd` ASC ", con);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
                 while (reader.Read())
@@ -45,7 +45,7 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand($"Select * from `programma` where ID = {ID}", con);
+                MySqlCommand sqlCom = new MySqlCommand($"SELECT * FROM `programma` WHERE ID = {ID}", con);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
                 while (reader.Read())
@@ -66,7 +66,7 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("Update `programma` set `thuisTeam` = @ThuisTeam, `uitTeam` = @UitTeam, `DatumTijd` = @DatumTijd where `ID` = @ID", con);
+                MySqlCommand cmd = new MySqlCommand("UPDATE `programma` SET `thuisTeam` = @ThuisTeam, `uitTeam` = @UitTeam, `DatumTijd` = @DatumTijd WHERE `ID` = @ID", con);
                 cmd.Parameters.AddWithValue("@ThuisTeam", ThuisTeam);
                 cmd.Parameters.AddWithValue("@UitTeam", UitTeam);
                 cmd.Parameters.AddWithValue("@DatumTijd", DatumString);
@@ -83,7 +83,7 @@ namespace DataAccessLayer.DALs
             using(MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand($"Delete from `programma` where `id` = {ID}", con);
+                MySqlCommand cmd = new MySqlCommand($"DELETE FROM `programma` WHERE `id` = {ID}", con);
 
                 cmd.ExecuteNonQuery();
 

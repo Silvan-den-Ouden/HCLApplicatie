@@ -18,7 +18,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * From `account`", con);
+                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `account`", con);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
                 while (reader.Read())
@@ -46,7 +46,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * From `account` where `ID` = @ID", con);
+                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `account` WHERE `ID` = @ID", con);
                 sqlCom.Parameters.AddWithValue("@ID", ID);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
@@ -63,11 +63,5 @@ namespace DataAccessLayer.DALs
             }
             return account;
         }
-
-        //public int LoggedInUser()
-        //{
-        //    int UID = 2;
-        //    return UID;
-        //}
     }
 }

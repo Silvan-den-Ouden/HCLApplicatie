@@ -19,7 +19,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand sqlCom = new MySqlCommand("Select * from `wedstrijd` order by `datum` DESC", con);
+                MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM `wedstrijd` ORDER BY `datum` DESC", con);
                 MySqlDataReader reader = sqlCom.ExecuteReader();
 
                 while (reader.Read())
@@ -46,7 +46,7 @@ namespace DataAccessLayer.DALs
             using (MySqlConnection con = ConnectorClass.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("Insert into `wedstrijd` (`thuisTeam`,`thuisScore`, `uitScore`, `uitTeam`,`datum`) VALUES (@ThuisTeam, @ThuisScore, @UitScore, @UitTeam, @DatumTijd)", con);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO `wedstrijd` (`thuisTeam`,`thuisScore`, `uitScore`, `uitTeam`,`datum`) VALUES (@ThuisTeam, @ThuisScore, @UitScore, @UitTeam, @DatumTijd)", con);
                 cmd.Parameters.AddWithValue("@ThuisTeam", wedstrijdDTO.ThuisTeam);
                 cmd.Parameters.AddWithValue("@ThuisScore", wedstrijdDTO.ThuisScore);
                 cmd.Parameters.AddWithValue("@UitScore", wedstrijdDTO.UitScore);
