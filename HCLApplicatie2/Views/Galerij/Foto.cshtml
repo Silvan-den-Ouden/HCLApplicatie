@@ -1,9 +1,6 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Foto";
 }
-
-@Model.Foto.Public
 
 <h1>Foto</h1>
 <h2>Geupload door @Model.Account.Naam</h2>
@@ -16,18 +13,26 @@
 
 @if (Model.Foto.Public == "private")
 {
-    <input type="checkbox" id="publiekCheckbox" name="publiek" class="slider" onchange="changePublicity(@Model.Foto.ID)">
+    <input type="checkbox" id="publiekCheckbox" name="publiek" class="slider" onchange="confirmChangePublicity(@Model.Foto.ID)">
     <label for="publiek">Publiek</label>
 }
 
 @if (Model.Foto.Public == "public")
 {
-    <input type="checkbox" id="publiekCheckbox" name="publiek" class="slider" onchange="changePublicity(@Model.Foto.ID)" checked>
+    <input type="checkbox" id="publiekCheckbox" name="publiek" class="slider" onchange="confirmChangePublicity(@Model.Foto.ID)" checked>
     <label for="publiek">Publiek</label>
 }
 
 <script>
     const checkbox = document.getElementById("publiekCheckbox");
+
+    function confirmChangePublicity(ID) {
+        if (confirm("Weet je zeker dat je de openbaarheid wil aanpassen?")) {
+            changePublicity(ID);
+        } else {
+            checkbox.checked = !checkbox.checked;
+        }
+    }
 
     function changePublicity(ID){
         if(checkbox.checked){
@@ -35,24 +40,12 @@
                 url: '@Url.Action("UpdatePublicity", "Galerij")',
                 type: 'GET',
                 data: { ID: ID, publicity: "Public" },
-                success: function (data) {
-                    console.log(data);
-                }, 
-                error: function (error){
-                    console.log("error");
-                }
             });
         } else {
             $.ajax({
                 url: '@Url.Action("UpdatePublicity", "Galerij")',
                 type: 'GET',
                 data: { ID: ID, publicity: "Private" },
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (error) {
-                    console.log("error");
-                }
             });
         }
     }

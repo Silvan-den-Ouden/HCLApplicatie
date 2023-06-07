@@ -5,7 +5,12 @@
 
 <div id="html-container">
 
-<h1>Index</h1>
+@if(Model.SelectedTeam.Club != "publiek"){
+        <h1>@Model.SelectedTeam.Club, @Model.SelectedTeam.Elftal</h1>
+    } else
+    {
+        <h1>Publieke Foto's</h1>
+    }
 
 <select name="team-select" id="team-select" onchange="teamSelect()">
     <option>Selecteer Team</option>

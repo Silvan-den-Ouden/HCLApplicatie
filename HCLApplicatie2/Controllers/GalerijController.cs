@@ -35,16 +35,16 @@ namespace HCLApplicatie2.Controllers
         {
             List<FotoModel> fotos = _fotoCollection.GetFotosFromTeam(team_ID);
             List<TeamModel> teams = _teamCollection.GetTeams();
+            TeamModel selectedTeam = _teamCollection.GetTeamWithID(team_ID); 
 
-            GalerijViewModel galerijViewModel = new GalerijViewModel(fotos, teams);
+            GalerijViewModel galerijViewModel = new GalerijViewModel(fotos, teams, selectedTeam);
 
             return View("Index", galerijViewModel);
         }
 
-        public string UpdatePublicity(int ID, string publicity)
+        public void UpdatePublicity(int ID, string publicity)
         {
             _fotoCollection.ChangeFotoPublicity(ID, publicity);
-            return publicity;
         }
 
         public void DeleteFoto(int ID)
