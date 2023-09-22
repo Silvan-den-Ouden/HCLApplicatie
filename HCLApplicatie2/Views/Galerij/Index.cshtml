@@ -6,11 +6,13 @@
 <div id="html-container">
 
 @if(Model.SelectedTeam.Club != "publiek"){
-        <h1>@Model.SelectedTeam.Club, @Model.SelectedTeam.Elftal</h1>
-    } else
-    {
-        <h1>Publieke Foto's</h1>
-    }
+    <h1>@Model.SelectedTeam.Club, @Model.SelectedTeam.Elftal</h1>
+} else
+{
+    <h1>Publieke Foto's</h1>
+}
+
+<input type="button" value="Foto Uploaden" class="btn btn-primary" onclick="uploadFoto()" />
 
 <select name="team-select" id="team-select" onchange="teamSelect()">
     <option>Selecteer Team</option>
@@ -22,7 +24,7 @@
     }
 </select>
 
-<br />
+<br /><br />
 
 @foreach(var foto in @Model.FotoList)
 {
@@ -58,6 +60,10 @@
                 }
             });
         }
+    }
+
+    function uploadFoto(){
+        location.href = "Galerij/Upload";
     }
 </script>
 

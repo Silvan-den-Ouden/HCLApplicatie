@@ -100,5 +100,10 @@ namespace BusinessLayer.Collections
         {
             _fotoDAL.DeleteFoto(ID);
         }
+
+        public void UploadFoto(int account_ID, int team_ID, string publicity, string url)
+        {
+            _fotoDAL.UploadFoto(account_ID, team_ID, publicity, url);
+        }
     }
 }

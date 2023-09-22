@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Upload";
+}
+
+<h1>Upload</h1>
+
+
+<div>
+    <input type="number" id="account_ID" placeholder="ID" value="1">
+</div>
+<div>
+    <input type="checkbox" id="publicity" checked>
+    <label for="publicity">Publiek</label>
+</div>
+<div>
+    <input type="text" id="URL" placeholder="URL">
+</div>
+<div>
+    <label for="team-select">Selecteer team:</label><br />
+    <select name="team-select" id="team-select">
+        @foreach (var team in Model.TeamList)
+        {
+            <option value="@team.ID">@team.Club, @team.Elftal</option>
+        }
+    </select>   
+</div>
+<br />
+<input type="button" value="Terug" class="btn btn-danger" onclick="location.href='/Galerij'" />
+<input type="submit" value="Create" class="btn btn-primary" onclick="uploadFoto()" />
+
+<script>
+    function validateInput() {
+        var url = document.getElementById("URL").value;
+
+        if (url.trim() == '') {
+            alert("Please enter the URL.");
+            return false;
+        }
+
+        return true;
+    }
+
+    function uploadFoto() {
+        var accountID = @Model.Account.ID;
+        var teamID = document.getElementById("team-select").value;
+        var publicity = document.getElementById("publicity").checked ? "public" : "private";
+        var url = document.getElementById("URL").value;
+
+        if (!validateInput()) {
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Action("UploadFoto", "Galerij")',
+            type: 'POST',
+            data: { account_ID: accountID, team_ID: teamID, publicity: publicity, url: url },
+            success: function (data) {
+                location.href = "/Galerij"
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+                alert("An error occurred during the upload. Please try again.");
+            }
+        });
+    }
+</script>

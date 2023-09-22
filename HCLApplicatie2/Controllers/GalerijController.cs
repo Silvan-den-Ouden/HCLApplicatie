@@ -31,6 +31,16 @@ namespace HCLApplicatie2.Controllers
             return View(fotoViewModel);
         }
 
+        public IActionResult Upload()
+        {
+            AccountModel account = _accountCollection.GetAccountWithID(1);
+            List<TeamModel> teamList = _teamCollection.GetTeams();
+            FotoModel foto = new FotoModel();
+
+            UploadViewModel uploadViewModel = new UploadViewModel(account, teamList, foto);
+            return View(uploadViewModel);
+        }
+
         public IActionResult GetFotos(int team_ID)
         {
             List<FotoModel> fotos = _fotoCollection.GetFotosFromTeam(team_ID);
@@ -50,6 +60,11 @@ namespace HCLApplicatie2.Controllers
         public void DeleteFoto(int ID)
         {
             _fotoCollection.DeleteFoto(ID);
+        }
+
+        public void UploadFoto(int account_ID, int team_ID, string publicity, string url)
+        {
+           _fotoCollection.UploadFoto(account_ID, team_ID, publicity, url);
         }
     }
 }

@@ -139,6 +139,7 @@ namespace DataAccessLayer.DALs
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("UPDATE `foto` SET `public` = \"private\" WHERE `ID` = @ID", con);
+                
                 cmd.Parameters.AddWithValue("@ID", ID);
                 
                 cmd.ExecuteNonQuery();
@@ -162,6 +163,25 @@ namespace DataAccessLayer.DALs
                 
                 MySqlCommand resetAutoIncrementCmd = new MySqlCommand($"ALTER TABLE `foto` AUTO_INCREMENT = {maxIndex + 1}", con);
                 resetAutoIncrementCmd.ExecuteNonQuery();
+
+                con.Close();
+            }
+        }
+
+        public void UploadFoto(int account_ID, int team_ID, string publicity, string url)
+        {
+            using (MySqlConnection con = ConnectorClass.MakeConnection())
+            {
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO `foto` (account_ID, team_ID, public, url) VALUES (@account_ID, @team_ID, @publicity, @url)", con);
+
+                cmd.Parameters.AddWithValue("@account_ID", account_ID);
+                cmd.Parameters.AddWithValue("@team_ID", team_ID);
+                cmd.Parameters.AddWithValue("@publicity", publicity);
+                cmd.Parameters.AddWithValue("@url", url);
+
+                cmd.ExecuteNonQuery();
 
                 con.Close();
             }
